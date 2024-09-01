@@ -1,0 +1,19 @@
+:root{
+  line-height:1.5;
+
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
+
+body{
+  max-width:1000px;
+  margin:auto;
+  padding:10px;
+  min-height:100vh;
+}
+
