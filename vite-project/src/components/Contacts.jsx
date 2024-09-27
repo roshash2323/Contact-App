@@ -8,8 +8,19 @@ import { v4 } from "uuid";
 
 function Contacts() {
     const [contacts,setContacts]=useState([])
-    const[contact,setContact]=useState({id:"",name:"",lastName:"",email:"",number:""});
+    
     const [alert,setAlert]=useState("")
+    const[search,setSearch]=useState("")
+    const [deleteItem,setDeleteItem]=useState(false)
+    const[contact,setContact]=useState({id:"",name:"",lastName:"",email:"",number:"",deleteItem:{deleteItem}});
+
+    const deleteItemHandler=()=>{
+     
+       console.log(contacts)
+      
+     
+    }
+
 
     const deleteHandler=(id)=>{
       const newContacts=contacts.filter(contact=>contact.id !== id);
@@ -34,9 +45,15 @@ function Contacts() {
             setContact({name:"",lastName:"",email:"",number:""});
 
         }
+    
+    }
 
-      
-
+    const searchHandler=()=>{
+    const searchedContacts=contacts.filter((contact)=>contact.name.includes(search))
+    console.log(searchedContacts)
+    setContacts(searchedContacts)
+    setSearch("")
+    
     }
 
     const changeHandler=(event)=>{
@@ -64,9 +81,19 @@ function Contacts() {
 
    
     <div className={styles.alert}>{alert && <p>{alert}</p> }</div>
-    <ContactsList contacts={contacts} deleteHandler={deleteHandler}/>
+    {!!contacts.length &&
+    <div>
+       <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+       <button onClick={searchHandler}>search</button>
+    </div> && <button onClick={deleteItemHandler}>Delete item</button>
+  
+  }
+  
+    <ContactsList contacts={contacts} deleteHandler={deleteHandler} deleteItem={deleteItem} setDeleteItem={setDeleteItem} />
     </div>
+        
   )
 }
+
 
 export default Contacts

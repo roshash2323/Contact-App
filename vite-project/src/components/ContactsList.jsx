@@ -2,7 +2,7 @@
 import ContactItem from "./ContactItem";
 import styles from "./ContactsList.module.css";
 
-function ContactsList({contacts,deleteHandler}) {
+function ContactsList({contacts,deleteHandler,deleteItem,setDeleteItem}) {
   
   
   return (
@@ -10,7 +10,7 @@ function ContactsList({contacts,deleteHandler}) {
       <h3>Contacts List</h3>
     {contacts.length ? (<ul className={styles.contacts}>
         {contacts.map((contact)=>(
-          <ContactItem key={contact.id} data={contact} deleteHandler={deleteHandler}/>
+          <ContactItem key={contact.id} data={contact} deleteHandler={deleteHandler} deleteItem={deleteItem} setDeleteItem={setDeleteItem}/>
           
         ))}
          
